@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/0694d31b2e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon" />
+    <script src="script.js" defer></script>
+    <title>MusicPlyr</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Navigation -->
+      <div class="main-nav">
+        <ul>
+          <li>
+            <div>
+              <i class="fa-solid fa-music fa-lg"></i>
+              <h3>MusicPlyr</h3>
+            </div>
+          </li>
+          <li>
+            <a href="#"> <i class="fa-solid fa-chevron-left fa-lg"></i></a>
+            <a href="#"> <i class="fa-solid fa-chevron-right fa-lg"></i></a>
+          </li>
+          <li>
+            <div class="input">
+              <input type="search" id="" placeholder="Search Library" />
+            </div>
+          </li>
+          <li>
+            <span onclick="toggleMenu()">
+              <i class="fa-solid fa-bars"></i>
+              <p>Menu</p>
+              <img src="img/photo.jpg" alt="user" />
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Side Menu -->
+      <div class="side-nav">
+        <!-- Logo -->
+        <div class="logo">
+          <i class="fa-solid fa-music fa-lg"></i>
+          <h3>MusicPlyr</h3>
+        </div>
+
+        <!-- Menu -->
+        <div class="cat">
+          <h5>Menu</h5>
+          <ul>
+            <li>
+              <a href="" class="active">
+                <i class="fa-solid fa-house"></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <i class="fa-solid fa-table-cells-large"></i>
+                Categories
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <i class="fa-solid fa-bookmark"></i>
+                Saved
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- Playlist -->
+        <div class="plt">
+          <h5>My Playlist</h5>
+          <div class="xm"><hr /></div>
+
+          <ul>
+            <li>
+              <a href="">Meditation</a>
+              <a href="">About Space</a>
+              <a href="">Bookcase</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Account -->
+        <div class="plt">
+          <h5>My Account</h5>
+          <div class="xm"><hr /></div>
+
+          <ul>
+            <li>
+              <a href="">Settings <i class="fa-solid fa-gear"></i></a>
+              <a href=""
+                >Logout <i class="fa-solid fa-right-from-bracket"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main Area -->
+      <div class="main">
+        <!-- Mobile Menu -->
+        <div class="menu-container" id="toggle">
+          <div class="menu">
+            <ul>
+              <li>
+                <a href="">
+                  <i class="fa-solid fa-house"></i>
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="fa-solid fa-table-cells-large"></i>
+                  Categories
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="fa-solid fa-bookmark"></i>
+                  Saved
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="fa-solid fa-book-medical"></i>
+                  Playlist
+                </a>
+              </li>
+              <li>
+                <a href="">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  Logout
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Top Artist Section -->
+        <div class="top-artist">
+          <h3>Welcome, <span>Hossana</span></h3>
+          <p>These are the top Albums of the week</p>
+
+          <div class="hr"><hr /></div>
+          <div class="album" id="album-container"></div>
+        </div>
+
+        <!-- Album Template -->
+        <!-- <template album-template>
+          <div class="album-each" id="template-container">
+            <img class="album-img" />
+            <p class="album-name"></p>
+          </div>
+        </template> -->
+
+        <!-- Main Section -->
+        <div class="main-wrapper">
+          <h3>Trending Songs for You</h3>
+          <ul>
+            <li><a href="#">new</a></li>
+            <li><a href="#">playlist</a></li>
+            <li><a href="#">saved</a></li>
+          </ul>
+          <div class="hr"><hr /></div>
+          <div class="song-cards" id="card-container"></div>
+        </div>
+
+        <!-- <div class="card">
+              <img src="img/img1.jpg" />
+              <a href="#"><i class="fa-solid fa-play"></i></a>
+              <h4 id="song-title">About Self Love</h4>
+              <p>by <span id="author">Yasmine Jocelyn</span></p>
+            </div> -->
+
+        <!-- Top Tracks -->
+        <div class="top-tracks">
+          <h3>Top Trending Songs</h3>
+          <p>These are the top artists of the week</p>
+          <div class="hr"><hr /></div>
+          <div class="song-list">
+            <div class="track">
+              <span>
+                <h4>Name of Song</h4>
+                <p>Name of Artist</p>
+              </span>
+              <span>
+                <i class="fa-solid fa-circle-play"></i>
+              </span>
+            </div>
+            <div class="track">
+              <span>
+                <h4>Name of Song</h4>
+                <p>Name of Artist</p>
+              </span>
+              <span>
+                <i class="fa-solid fa-circle-play"></i>
+              </span>
+            </div>
+            <div class="track">
+              <span>
+                <h4>Name of Song</h4>
+                <p>Name of Artist</p>
+              </span>
+              <span>
+                <i class="fa-solid fa-circle-play"></i>
+              </span>
+            </div>
+            <div class="track">
+              <span>
+                <h4>Name of Song</h4>
+                <p>Name of Artist</p>
+              </span>
+              <span>
+                <i class="fa-solid fa-circle-play"></i>
+              </span>
+            </div>
+            <div class="track">
+              <span>
+                <h4>Name of Song</h4>
+                <p>Name of Artist</p>
+              </span>
+              <span>
+                <i class="fa-solid fa-circle-play"></i>
+              </span>
+            </div>
+            <div class="track">
+              <span>
+                <h4>Name of Song</h4>
+                <p>Name of Artist</p>
+              </span>
+              <span>
+                <i class="fa-solid fa-circle-play"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player -->
+      <div class="player">
+        <div class="player-group">
+          <audio id="song">
+            <source src="./songs/Asake - 2 30.mp3" type="audio/mpeg" />
+          </audio>
+          <!-- Now Playing Widgets -->
+          <div class="song-info">
+            <img src="img/img1.jpg" alt="" id="cover" />
+
+            <span>
+              <h3 id="title">Title of Song - Into the Stars</h3>
+              <p id="artist">Artist</p>
+            </span>
+          </div>
+          <!--  -->
+          <div class="ranger">
+            <input type="range" value="0" id="progress" />
+          </div>
+          <!--  -->
+          <div class="ranger-m">
+            <input type="range" min="0" max="100" value="0" id="range" />
+          </div>
+          <!--  -->
+          <div class="ctrls">
+            <button onclick="playPrev()" id="prev">
+              <i class="fa-solid fa-backward-step"></i>
+            </button>
+            <button onclick="playPause()" id="playpause">
+              <i class="fa-solid fa-play" id="ctrolIcon"></i>
+            </button>
+            <button onclick="playNext()" id="next">
+              <i class="fa-solid fa-forward-step"></i>
+            </button>
+          </div>
+
+          <!--  -->
+          <div class="volume-sldr">
+            <i class="fa-solid fa-volume-high" onclick="muteSound()"></i>
+            <div class="volume">
+              <input
+                type="range"
+                onchange="volumeChange()"
+                value="0"
+                id="volume"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
