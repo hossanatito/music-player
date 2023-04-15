@@ -231,8 +231,7 @@ const cover = document.getElementById("cover");
 const iconBtn = document.getElementById("iconBtn");
 const volumeBtn = document.getElementById("volume");
 
-let songIndex = Math.floor(Math.random() * songs.length + 1);
-let autoplay = 0;
+let songIndex = Math.floor(Math.random() * songs.length);
 
 window.addEventListener("load", () => {
   loadSong(songIndex);
@@ -245,8 +244,8 @@ function loadSong(songIndex) {
   cover.src = songs[songIndex].cover;
   audio.load();
 
-  iconBtn.classList.add("fa-pause");
-  iconBtn.classList.remove("fa-play");
+  iconBtn.classList.add("fa-play");
+  iconBtn.classList.remove("fa-pause");
 }
 
 // reset song slider
@@ -304,18 +303,32 @@ function nextSong() {
   playPause();
 }
 
-// Update Progress Bar as Song is playing
-if (audio.playing) {
-  setInterval(() => {
-    progress.value = audio.currentTime;
-  }, 500);
+let progressInterval;
+
+function updateProgress() {
+  progress.max = audio.duration;
+  progress.value = audio.currentTime;
+
+  progressM.max = audio.duration;
+  progressM.value = audio.currentTime;
 }
 
-// Update Progress Bar as Song is playing
-if (audio.playing) {
-  setInterval(() => {
-    progressM.value = audio.currentTime;
-  }, 500);
+function startProgressInterval() {
+  progressInterval = setInterval(updateProgress, 500);
+}
+
+function stopProgressInterval() {
+  clearInterval(progressInterval);
+}
+
+audio.addEventListener("play", startProgressInterval);
+audio.addEventListener("pause", stopProgressInterval);
+audio.addEventListener("timeupdate", updateProgress);
+
+if (audio.currentTime > 0 && !audio.paused) {
+  startProgressInterval();
+} else {
+  stopProgressInterval();
 }
 
 // Update Song while Seeking
@@ -334,7 +347,7 @@ function volumeChange() {
 // Mute Audio
 function muteSound() {
   audio.volume = 0;
-  volume.value = 0;
+  volumeBtn.value = 0;
 }
 
 /* Event Listeners */
