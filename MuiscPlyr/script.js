@@ -8,6 +8,16 @@ function toggleMenu() {
   }
 }
 
+// // Logo Href
+const logoNav = document.getElementById("logo-nav");
+logoNav.style.cursor = "pointer";
+logoNav.setAttribute("onclick", "window.open('./index.html')");
+
+// // Logo Href
+const logoNavm = document.getElementById("logo-nav-m");
+logoNavm.style.cursor = "pointer";
+logoNavm.setAttribute("onclick", "window.open('./index.html')");
+
 const albums = [
   {
     name: "Ready To Die",
@@ -76,31 +86,17 @@ const albums = [
     url: "./album/cover15.jpg",
     artist: "Lauryn Hill",
   },
-
-  //   {
-  //     name: "Bizarre Ride II",
-  //     url: "./album/cover16.jpg",
-  //     artist: "The Pharcyde",
-  //   },
 ];
 
 let albumContainer = document.getElementById("album-container");
 
 for (let i = 0; i < albums.length; i++) {
-  let albumDiv = document.createElement("div");
-  albumDiv.classList.add("album-each");
+  let albumDiv = `<div class="album-each" div-index="${i + 1}">
+    <img class="album-img" src="${albums[i].url}"/>
+     <p class="album-name">${albums[i].name}</p>
+  </div>`;
 
-  let albumImg = document.createElement("img");
-  albumImg.src = albums[i].url;
-
-  let albumTitle = document.createElement("p");
-  albumTitle.classList.add("album-name");
-  albumTitle.innerText = albums[i].name;
-
-  albumDiv.appendChild(albumImg);
-  albumDiv.appendChild(albumTitle);
-
-  albumContainer.appendChild(albumDiv);
+  albumContainer.insertAdjacentHTML("beforeend", albumDiv);
 }
 
 // ----- Songs ---- //
@@ -221,61 +217,6 @@ const songs = [
   },
 ];
 
-// Populate Top Tracks
-const cardContainer = document.getElementById("card-container");
-
-for (let i = 0; i < songs.length; i++) {
-  let cardParent = document.createElement("div");
-  cardParent.classList.add("card");
-
-  let cardImg = document.createElement("img");
-  cardImg.src = songs[i].cover;
-
-  let cardIcon = document.createElement("a");
-  cardIcon.href = "#";
-  cardIcon.innerHTML = `<i class="fa-solid fa-play"></i>`;
-
-  let cardTitle = document.createElement("h4");
-  cardTitle.innerText = songs[i].title;
-
-  let cardArtist = document.createElement("p");
-  cardArtist.innerText = songs[i].artist;
-
-  cardParent.appendChild(cardImg);
-  cardParent.appendChild(cardIcon);
-  cardParent.appendChild(cardTitle);
-  cardParent.appendChild(cardArtist);
-
-  cardContainer.appendChild(cardParent);
-}
-
-// Populate Song List
-const trackContainer = document.getElementById("trackContainer");
-
-for (let i = 0; i < songs.length; i++) {
-  let trackParent = document.createElement("div");
-  trackParent.classList.add("track");
-
-  trackSpan = document.createElement("span");
-
-  trackH = document.createElement("h4");
-  trackH.innerText = songs[i].title;
-
-  trackP = document.createElement("p");
-  trackP.innerText = songs[i].artist;
-
-  trackS = document.createElement("span");
-  trackS.innerHTML = `<i class="fa-solid fa-circle-play" onclick="onLoad()"></i>`;
-
-  trackSpan.appendChild(trackH);
-  trackSpan.appendChild(trackP);
-
-  trackParent.appendChild(trackSpan);
-  trackParent.appendChild(trackS);
-
-  trackContainer.appendChild(trackParent);
-}
-
 // player
 const musicContainer = document.getElementById("audio-container");
 const playBtn = document.getElementById("playpause");
@@ -289,8 +230,12 @@ const cover = document.getElementById("cover");
 const iconBtn = document.getElementById("iconBtn");
 const volumeBtn = document.getElementById("volume");
 
-let songIndex = 0;
+let songIndex = Math.floor(Math.random() * songs.length + 1);
 let autoplay = 0;
+
+window.addEventListener("load", () => {
+  loadSong(songIndex);
+});
 
 function loadSong(songIndex) {
   title.innerText = songs[songIndex].title;
@@ -298,9 +243,10 @@ function loadSong(songIndex) {
   audio.src = songs[songIndex].path;
   cover.src = songs[songIndex].cover;
   audio.load();
-}
 
-loadSong(songIndex);
+  iconBtn.classList.add("fa-pause");
+  iconBtn.classList.remove("fa-play");
+}
 
 // reset song slider
 function reset_slider() {
@@ -316,6 +262,12 @@ function reset_slider() {
   }
 }
 
+function playMusic() {
+  iconBtn.classList.add("fa-pause");
+  iconBtn.classList.remove("fa-play");
+  audio.play();
+}
+
 function playPause() {
   if (iconBtn.classList.contains("fa-pause")) {
     iconBtn.classList.remove("fa-pause");
@@ -328,11 +280,6 @@ function playPause() {
     audio.play();
   }
 }
-
-// function resetIcon() {
-//   if (iconBtn.classList.contains("fa-play")) {
-
-// }
 
 function prevSong() {
   reset_slider();
@@ -384,3 +331,55 @@ function muteSound() {
 
 /* Event Listeners */
 audio.addEventListener("ended", nextSong);
+
+// Populate Top Tracks
+const cardContainer = document.querySelector("#card-container");
+
+for (let i = 0; i < songs.length; i++) {
+  let songDiv = `<div class="card" song-index="${i + 1}">
+          <img src="${songs[i].cover}" />
+          <a><i class="fa-solid fa-play"></i></a>
+          <h4 id="song-title">${songs[i].title}</h4>
+          <p><span>${songs[i].artist}</span></p>
+          <audio src="${songs[i].path}"></audio>
+        </div>`;
+
+  cardContainer.insertAdjacentHTML("beforeend", songDiv);
+}
+
+const allCards = cardContainer.querySelectorAll(".card");
+
+for (let j = 0; j < allCards.length; j++) {
+  allCards[j].addEventListener("click", function () {
+    clicked(this);
+  });
+}
+
+// Populate Song List
+const SongListContainer = document.querySelector("#trackContainer");
+
+for (let i = 0; i < songs.length; i++) {
+  let trackDiv = `<div class="track" track-index="${i + 1}">
+                  <span><h4>${songs[i].title}</h4>
+                  <p>${songs[i].artist}</p></span>
+                  <span><i class="fa-solid fa-circle-play"></i></span>
+                  <audio src="${songs[i].path}"></audio>
+                 </div>`;
+
+  SongListContainer.insertAdjacentHTML("beforeend", trackDiv);
+}
+
+const allTracks = SongListContainer.querySelectorAll(".track");
+
+for (let j = 0; j < allTracks.length; j++) {
+  allTracks[j].addEventListener("click", function () {
+    clicked(this);
+  });
+}
+
+function clicked(element) {
+  let index =
+    element.getAttribute("song-index") || element.getAttribute("track-index");
+  loadSong(index - 1);
+  playMusic();
+}
