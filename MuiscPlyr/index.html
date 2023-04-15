@@ -37,8 +37,8 @@
               <input type="search" id="" placeholder="Search Library" />
             </div>
           </li>
-          <li>
-            <span onclick="toggleMenu()">
+          <li onclick="toggleMenu()">
+            <span>
               <i class="fa-solid fa-bars"></i>
               <p>Menu</p>
               <img src="img/photo.jpg" alt="user" />
@@ -188,71 +188,29 @@
           <h3>Top Trending Songs</h3>
           <p>These are the top artists of the week</p>
           <div class="hr"><hr /></div>
-          <div class="song-list">
-            <div class="track">
-              <span>
-                <h4>Name of Song</h4>
-                <p>Name of Artist</p>
-              </span>
-              <span>
-                <i class="fa-solid fa-circle-play"></i>
-              </span>
-            </div>
-            <div class="track">
-              <span>
-                <h4>Name of Song</h4>
-                <p>Name of Artist</p>
-              </span>
-              <span>
-                <i class="fa-solid fa-circle-play"></i>
-              </span>
-            </div>
-            <div class="track">
-              <span>
-                <h4>Name of Song</h4>
-                <p>Name of Artist</p>
-              </span>
-              <span>
-                <i class="fa-solid fa-circle-play"></i>
-              </span>
-            </div>
-            <div class="track">
-              <span>
-                <h4>Name of Song</h4>
-                <p>Name of Artist</p>
-              </span>
-              <span>
-                <i class="fa-solid fa-circle-play"></i>
-              </span>
-            </div>
-            <div class="track">
-              <span>
-                <h4>Name of Song</h4>
-                <p>Name of Artist</p>
-              </span>
-              <span>
-                <i class="fa-solid fa-circle-play"></i>
-              </span>
-            </div>
-            <div class="track">
-              <span>
-                <h4>Name of Song</h4>
-                <p>Name of Artist</p>
-              </span>
-              <span>
-                <i class="fa-solid fa-circle-play"></i>
-              </span>
-            </div>
-          </div>
+          <div class="song-list" id="trackContainer"></div>
         </div>
       </div>
 
+      <!-- Track Template -->
+      <!-- <div class="track">
+        <span>
+          <h4>Name of Song</h4>
+          <p>Name of Artist</p>
+        </span>
+        <span>
+          <i class="fa-solid fa-circle-play"></i>
+        </span>
+      </div> -->
+
       <!-- Player -->
       <div class="player">
-        <div class="player-group">
-          <audio id="song">
+        <div class="player-group" id="audio-containter">
+          <audio id="audio" src=""></audio>
+          <!-- <audio id="song">
             <source src="./songs/Asake - 2 30.mp3" type="audio/mpeg" />
-          </audio>
+          </audio> -->
+
           <!-- Now Playing Widgets -->
           <div class="song-info">
             <img src="img/img1.jpg" alt="" id="cover" />
@@ -268,17 +226,17 @@
           </div>
           <!--  -->
           <div class="ranger-m">
-            <input type="range" min="0" max="100" value="0" id="range" />
+            <input type="range" value="0" id="progress" />
           </div>
           <!--  -->
           <div class="ctrls">
-            <button onclick="playPrev()" id="prev">
+            <button id="prev" onclick="prevSong()">
               <i class="fa-solid fa-backward-step"></i>
             </button>
-            <button onclick="playPause()" id="playpause">
-              <i class="fa-solid fa-play" id="ctrolIcon"></i>
+            <button id="playpause" onclick="playPause()">
+              <i class="fa-solid fa-play" id="iconBtn"></i>
             </button>
-            <button onclick="playNext()" id="next">
+            <button id="next" onclick="nextSong()">
               <i class="fa-solid fa-forward-step"></i>
             </button>
           </div>
@@ -290,7 +248,7 @@
               <input
                 type="range"
                 onchange="volumeChange()"
-                value="0"
+                value="90"
                 id="volume"
               />
             </div>
