@@ -233,6 +233,10 @@ const volumeBtn = document.getElementById("volume");
 
 let songIndex = Math.floor(Math.random() * songs.length);
 
+window.addEventListener("load", () => {
+  loadSong(songIndex);
+});
+
 function loadSong(songIndex) {
   title.innerText = songs[songIndex].title;
   artist.innerText = songs[songIndex].artist;
@@ -243,8 +247,6 @@ function loadSong(songIndex) {
   iconBtn.classList.add("fa-play");
   iconBtn.classList.remove("fa-pause");
 }
-
-loadSong(songIndex);
 
 // reset song slider
 function reset_slider() {
