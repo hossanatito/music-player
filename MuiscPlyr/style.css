@@ -296,6 +296,7 @@ body {
   padding: 0px 40px;
   overflow-y: auto;
   position: relative;
+  height: 100%;
 }
 
 .main-wrapper {
