@@ -754,11 +754,15 @@ body {
 @media only screen and (max-width: 430px) {
   /* mobile */
   .wrapper {
-    grid-template-rows: 70px auto 65px;
+    grid-template-rows: 70px auto 70px;
     grid-template-areas:
       "n n n n n n n n n n n n"
       "m m m m m m m m m m m m"
       "p p p p p p p p p p p p";
+  }
+
+  .main {
+    overflow: auto;
   }
 
   .main-nav {
