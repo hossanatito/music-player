@@ -749,4 +749,8 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     grid-auto-rows: 230px;
   }
+
+  .player {
+    position: fixed;
+  }
 }
