@@ -224,6 +224,7 @@ const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const audio = document.getElementById("audio");
 const progress = document.getElementById("progress");
+const progressM = document.getElementById("progress-m");
 const title = document.getElementById("title");
 const artist = document.getElementById("artist");
 const cover = document.getElementById("cover");
@@ -307,6 +308,13 @@ function nextSong() {
 if (audio.playing) {
   setInterval(() => {
     progress.value = audio.currentTime;
+  }, 500);
+}
+
+// Update Progress Bar as Song is playing
+if (audio.playing) {
+  setInterval(() => {
+    progressM.value = audio.currentTime;
   }, 500);
 }
 
