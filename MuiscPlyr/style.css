@@ -36,6 +36,8 @@ body {
     "s s n n n n n n n n n n"
     "s s m m m m m m m m m m"
     "p p p p p p p p p p p p";
+  grid-auto-flow: dense;
+  overflow: auto;
 }
 
 /* -------------------- Top Nav -------------------- */
@@ -739,7 +741,7 @@ body {
   .ranger-m {
     display: block;
     position: fixed;
-    bottom: 60px;
+    bottom: 65px;
   }
 
   #progress-m {
@@ -754,7 +756,7 @@ body {
 @media only screen and (max-width: 430px) {
   /* mobile */
   .wrapper {
-    grid-template-rows: 70px auto 70px;
+    grid-template-rows: 70px auto 65px;
     grid-template-areas:
       "n n n n n n n n n n n n"
       "m m m m m m m m m m m m"
@@ -762,7 +764,7 @@ body {
   }
 
   .main {
-    overflow: auto;
+    overflow-y: scroll;
   }
 
   .main-nav {
@@ -773,6 +775,9 @@ body {
     display: none;
   }
 
+  .player {
+  }
+
   .player-group .volume-sldr {
     display: none;
   }
@@ -781,6 +786,6 @@ body {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-    grid-auto-rows: 230px;
+    grid-auto-rows: 200px;
   }
 }
